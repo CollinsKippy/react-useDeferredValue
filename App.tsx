@@ -9,8 +9,6 @@ export default function App() {
   const handleChange = (e) => {
     const text = e.target.value;
     setName(text);
-
-    setNameList(getListedName(text));
   };
 
   return (
@@ -23,13 +21,4 @@ export default function App() {
       <NameLister name={name} />
     </div>
   );
-}
-
-function getListedName(name: string): string[] {
-  let myList: string[] = [];
-  for (let i = 0; i < 20000; i++) {
-    myList.push(name);
-  }
-
-  return myList;
 }
