@@ -19,11 +19,8 @@ export default function App() {
       <input type="text" value={name} onChange={handleChange} />
 
       <hr />
-      <ul>
-        {nameList.map((n, index) => {
-          return <NameLister key={index} name={n} />;
-        })}
-      </ul>
+
+      <NameLister name={name} />
     </div>
   );
 }

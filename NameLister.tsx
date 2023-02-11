@@ -2,12 +2,13 @@ import * as React from 'react';
 
 type NameProps = {
   name: string;
-  key: number;
 };
 
-export default function NameLister(props: NameProps): JSX.Element {
+export default function NameLister({ name }: NameProps): JSX.Element {
   let myList = [];
-  for (let i = 0; i < 20000; i++) {}
+  for (let i = 0; i < 20000; i++) {
+    myList.push(<div>{name}</div>);
+  }
 
-  return <li key={props.key}>{props.name}</li>;
+  return <div>{myList}</div>;
 }
