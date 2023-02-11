@@ -13,7 +13,7 @@ export default function NameLister({ name }: NameProps): JSX.Element {
     }
 
     return lt;
-  }, [name]);
+  }, [deferredname]);
 
   return <div>{myList}</div>;
 }
