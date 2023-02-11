@@ -3,23 +3,33 @@ import NameLister from './NameLister';
 import './style.css';
 
 export default function App() {
-  const [name, setName] = React.useState<string>();
+  const [name, setName] = React.useState<string>('');
   const [nameList, setNameList] = React.useState<string[]>([]);
-  const [isPending, startTransition] = React.useState();
+  const [isPending, startTransition] = React.useTransition();
 
   const handleChange = (e) => {
-    const text = e.target.value;
-    setName(text);
+    setName(e.target.value);
 
     startTransition(() => {
-      setNameList(addNames(text));
+      const list = [];
+      for (let i = 0; i < 20000; i++) {
+        list.push(e.target.value);
+      }
+
+      setNameList(list);
     });
   };
 
   return (
     <div>
       <h1>UseTransition and UseDeferredValue</h1>
-      <input type="text" value={name} onChange={handleChange} />
+      <input
+        type="text"
+        value={name}
+        name="name"
+        id="name"
+        onChange={handleChange}
+      />
 
       <hr />
 
@@ -27,11 +37,15 @@ export default function App() {
       {/* <NameLister name={name} /> */}
 
       {/* useTransition section */}
-      <ul>
-        {nameList.map((n, index) => {
-          return <li key={index}>{n}</li>;
-        })}
-      </ul>
+      {isPending ? (
+        'Loading...'
+      ) : (
+        <ul>
+          {nameList.map((n, index) => {
+            return <li key={index}>{n}</li>;
+          })}
+        </ul>
+      )}
     </div>
   );
 }
