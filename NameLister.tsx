@@ -6,6 +6,7 @@ type NameProps = {
 
 /**
  * Creates 20000 components out of every input
+ * With useDeferredValue
  */
 export default function NameLister({ name }: NameProps): JSX.Element {
   const deferredname = React.useDeferredValue(name);
