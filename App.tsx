@@ -7,16 +7,15 @@ export default function App() {
   const [nameList, setNameList] = React.useState<string[]>([]);
   const [isPending, startTransition] = React.useTransition();
 
+  const myList: string[] = React.useMemo(() => {
+    return addNames(name);
+  }, [name]);
+
   const handleChange = (e) => {
     setName(e.target.value);
 
     startTransition(() => {
-      const list = [];
-      for (let i = 0; i < 20000; i++) {
-        list.push(e.target.value);
-      }
-
-      setNameList(list);
+      setNameList(myList);
     });
   };
 
